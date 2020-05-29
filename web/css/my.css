@@ -1,0 +1,185 @@
+/* 总体外边距和内边距0px */
+* {
+	margin: 0;
+}
+
+li{
+	list-style:none
+}
+
+input{
+	height:30px;
+	width:300px;
+	border-radius:4px;
+	border:3px;
+	color:red;
+}
+
+
+/* a标签的下划线和颜色 */
+a{
+	text-decoration:none;
+	color:white
+}
+
+a:hover{
+	color: black
+}
+
+.m-background-change:hover{
+	background-color:white
+}
+
+/* 外边距小 */
+.m-margin-small{
+	margin:8px
+}
+
+/* 外边距中等 */
+.m-margin-middle{
+	margin:16px
+}
+
+/* 外边距大 */
+.m-margin-large{
+	margin:24px
+}
+
+/* 小内边距 */
+.m-padding-small{
+	padding: 5px
+}
+
+/* 中等高度 */
+.m-height-middle{
+	height: 100px
+}
+
+/* 大高度 */
+.m-height-high{
+	height:520px
+}
+
+/* 高等填满 */
+.m-height-full{
+	height:100%
+}
+
+/* 水平排列 */
+.m-float {
+	float: left
+}
+
+/* 水平全部填充 */
+.m-width-full{
+	width: 100%
+}
+
+/* 水平15% */
+.m-width-15{
+	width:15%
+}
+
+/* 水平20% */
+.m-width-20{
+	width:20%
+}
+
+/* 水平25% */
+.m-width-25{
+	width:25%
+}
+
+/* 水平30% */
+.m-width-30{
+	width:25%
+}
+
+/* 水平50% */
+.m-width-50{
+	width:50%
+}
+
+/* 水平50% */
+.m-width-50{
+	width:50%
+}
+
+/* 60% */
+.m-width-60{
+	width:60%
+}
+
+/* 低透明度 */
+.m-opcity-low{
+	opacity:0.8;
+}
+
+/* 中透明度 */
+.m-opcity-middle{
+	opacity:0.6;
+}
+
+/* 高透明度 */
+.m-opcity-large{
+	opacity:0.3;
+}
+
+/* 设置中间背景为灰色 */
+#main{
+	background-color:rgba(0,0,0,0.1)
+}
+
+#center{
+	background-color:rgba(230,100,0,0.3)
+}
+
+/* 左侧的list表格的背景色 */
+#leftList{
+	background-color:rgba(0,0,0,0.3)
+}
+
+#footer{
+	background:#111111
+}
+
+/* 搜索框样式 */
+#search{
+	width: 550px;
+	height: 35px;
+}
+
+#top{
+	width:100%;
+	height:40px;
+	background-color:rgba(200,0,0,0.8)
+}
+
+/* 搜索框确定按钮 */
+#searchBtn{
+	width: 60px;
+	height: 38px;
+	background-color: red;  
+	border-color: white;  
+	color: white;  
+	font-size:20px
+}
+
+
+/* 字体大小 */
+.m-font-middle {
+	font-size:16px
+}
+
+/* 图片大小 */
+.m-img-middle {
+	width:110px
+}
+
+#moreInfo{
+	position: absolute;
+	right: 180px;
+	top: 0px;
+    background-color: #fdfdff;
+    color: #888888;
+}
