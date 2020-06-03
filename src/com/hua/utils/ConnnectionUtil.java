@@ -11,7 +11,9 @@ import java.sql.SQLException;
  */
 public class ConnnectionUtil {
     private static final String DRIVER="com.mysql.jdbc.Driver";
-
+    private static final String URL="jdbc:mysql://localhost:3306/company?userUnicode=true&characterEncoding=utf8";
+    private static final String USER="root";
+    private static final String PASSWORD="123456";
 
     static{
         try {

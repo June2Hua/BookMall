@@ -4,7 +4,12 @@
 <head>
   <title>JuneHua购书网</title>
   <!-- 引入css样式 -->
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./css/my.css">
+  <%--引入bootstrap--%>
+  <script src="//cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -43,6 +48,7 @@
 
 <!-- 使用div容器嵌套 -->
 <div id="container">
+
   <div id="header" class="m-height-middle" style="position: relative;">
     <!-- 图片 -->
     <div class="m-float  m-width-25" style="margin-top:10px;">
@@ -67,57 +73,224 @@
       }
     %>
   </div>
+
   <!-- 中间部分div，包括目录，内容等 -->
-  <div id="main" class="m-height-high  m-width-full "  style="text-align:center">
-    <!-- 左侧 -->
-    <div id="left"class="m-float  m-width-15 m-height-full  m-margin-large "  >
-      <ul id="leftList" class="m-margin-middle m-padding-small">
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">童书/智力&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">小说/历史&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">文学/艺术&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">管理/心里&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">外语/国际&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">医学/人体&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">文化/传统&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">经济/金融&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">科技/技术&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">教材/资料&nbsp&nbsp&nbsp>></a></div></li>
-        <li class="m-margin-middle"><div class="m-background-change"><a href="#">健康/饮食&nbsp&nbsp&nbsp>></a></div></li>
-      </ul>
-    </div>
-    <!-- 中间 -->
-    <div id="center" class="m-float  m-width-60" style="margin-top:5px">
-      <!-- 第一行 -->
-      <div style="height:49%">
-        <div class="m-float  m-height-full" style="width:50%">
-          <img style="height:220px" src="./img/book1.jpg">
-          <h4 class="m-opcity-middle">java虚拟机规范</h4>
-        </div>
-        <div class="m-float  m-height-full" style="width:50%">
-          <img style="height:220px" src="./img/book2.jpg">
-          <h4 class="m-opcity-middle">spring源码分析</h4>
+  <div id="main" class=" m-width-full container"  style="text-align:center">
+    <div class="row" style="height: 500px">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <%--使用bootstrap实现轮播图轮播图--%>
+        <div id="myCarousel" class="carousel slide">
+          <!-- 轮播（Carousel）指标 -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+          <!-- 轮播（Carousel）项目 -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="./img/banner1.png" style="width: 100%;height: 100%;" alt="First slide">
+            </div>
+            <div class="item">
+              <img src="./img/banner2.jpg" style="width: 100%;height: 100%;" alt="Second slide">
+            </div>
+            <div class="item">
+              <img src="./img/banner3.jpg" style="width: 100%;height: 100%;" alt="Third slide">
+            </div>
+          </div>
+          <!-- 轮播（Carousel）导航 -->
+          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
-      <!-- 第二行 -->
-      <div style="height:49%">
-        <div class="m-float  m-height-full" style="width:50%">
-          <img style="height:220px" src="./img/book3.jpg">
-          <h4 class="m-opcity-middle">深入实践springboot</h4>
-        </div>
-        <div class="m-float  m-height-full" style="width:50%">
-          <img style="height:220px" src="./img/book5.jpg">
-          <h4 class="m-opcity-middle">Spring3.x</h4>
-        </div>
-      </div >
+      <div class="col-md-1"></div>
     </div>
-    <!-- 右侧 -->
-    <div id="right" class="m-float  m-width-20 m-height-full " style="margin-left:12px">
-      <div class="m-width-full  m-opcity-low" style="background:#FF5511 "><h3>为您推荐</h3></div>
-      <img style="height:160px" src="./img/book7.jpg">
-      <img style="height:160px" src="./img/book8.jpg">
-      <img style="height:160px" src="./img/book9.jpg">
+    <h3>最新推荐</h3>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
     </div>
-    <br>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <h3>猜你喜欢</h3>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div style="background-color: white">
+          <img src="./img/book3.jpg" style="width: 100%" alt="">
+          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
+          <p>remark</p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
   </div>
 </div>
 <br>
