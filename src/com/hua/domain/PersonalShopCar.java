@@ -8,14 +8,47 @@ public class PersonalShopCar {
 
     private Date modify;//添加购物车时间
 
-    private User user;//用户
+    private String uid;
 
     public PersonalShopCar() {
     }
 
-    public PersonalShopCar(int id, Date modify, User user) {
+    @Override
+    public String toString() {
+        return "PersonalShopCar{" +
+                "id=" + id +
+                ", modify=" + modify +
+                ", uid='" + uid + '\'' +
+                '}';
+    }
+
+    public PersonalShopCar(int id, Date modify, String uid) {
         this.id = id;
         this.modify = modify;
-        this.user = user;
+        this.uid = uid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getModify() {
+        return modify;
+    }
+
+    public void setModify(Date modify) {
+        this.modify = modify;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

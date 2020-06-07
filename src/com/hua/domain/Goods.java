@@ -42,6 +42,22 @@ public class Goods {
         this.image = image;
     }
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", modify=" + modify +
+                ", remark='" + remark + '\'' +
+                ", price=" + price +
+                ", sort=" + sort +
+                ", count=" + count +
+                ", sales=" + sales +
+                ", user=" + user +
+                ", image='" + image + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

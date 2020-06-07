@@ -19,16 +19,12 @@ public class UserDaoImpl implements IUserDao {
     public User getUserByid(String inputId) {
         //查询sql语句
         String sql="select * from myuser where id="+"\'"+inputId+"\'";
-        //数据库连接
-        Connection connection = ConnnectionUtil.getConnection();
-        //语句
-        Statement statement=null;
         //结果集
         ResultSet resultSet=null;
         //封装结果集
         LinkedList<User> list=new LinkedList<>();
-        try{
-            statement = connection.createStatement();
+        try(Connection connection = ConnnectionUtil.getConnection();
+            Statement statement=connection.createStatement()){
             resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
                 //结果集转为list集合
@@ -51,15 +47,6 @@ public class UserDaoImpl implements IUserDao {
         }catch (Exception exception){
             exception.printStackTrace();
             return null;
-        }finally {
-            //关闭连接
-            try{
-                resultSet.close();
-                statement.close();
-                connection.close();
-            }catch (Exception exception){
-                exception.printStackTrace();
-            }
         }
         return list.get(0);
     }
@@ -73,13 +60,9 @@ public class UserDaoImpl implements IUserDao {
         System.out.println("updateUser");
         //更新语句语句
         String sql="update myuser set name=?,psw=?,age=?,phone=?,address=?,city=? where id=?";
-        //数据库连接
-        Connection connection = ConnnectionUtil.getConnection();
-        //语句
-        PreparedStatement preparedStatement=null;
         int result=0;
-        try{
-            preparedStatement = connection.prepareStatement(sql);
+        try(Connection connection = ConnnectionUtil.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(sql)){
             preparedStatement.setString(1,user.getName() );
             preparedStatement.setString(2,user.getPsw() );
             preparedStatement.setInt(3,user.getAge() );
@@ -90,16 +73,8 @@ public class UserDaoImpl implements IUserDao {
             result = preparedStatement.executeUpdate();
         }catch (Exception exception){
             exception.printStackTrace();
-        }finally {
-            //关闭连接
-            try{
-                preparedStatement.close();
-                connection.close();
-            }catch (Exception exception){
-                exception.printStackTrace();
-            }
-            return result==1?true:false;
         }
+        return result==1?true:false;
     }
 
     /**
@@ -111,12 +86,8 @@ public class UserDaoImpl implements IUserDao {
         System.out.println("saveUser");
         //插入语句
         String sql="insert into myuser(id,name,psw,age,phone,address,city) values(?,?,?,?,?,?,?)";
-        //数据库连接
-        Connection connection = ConnnectionUtil.getConnection();
-        //语句
-        PreparedStatement preparedStatement=null;
-        try{
-            preparedStatement = connection.prepareStatement(sql);
+        try(Connection connection = ConnnectionUtil.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(sql)){
             preparedStatement.setString(1,user.getId() );
             preparedStatement.setString(2,user.getName() );
             preparedStatement.setString(3,user.getPsw() );
@@ -127,15 +98,7 @@ public class UserDaoImpl implements IUserDao {
             preparedStatement.executeUpdate();
         }catch (Exception exception){
             exception.printStackTrace();
-        }finally {
-            //关闭连接
-            try{
-                preparedStatement.close();
-                connection.close();
-            }catch (Exception exception){
-                exception.printStackTrace();
-            }
         }
-        return null;
+        return user;
     }
 }

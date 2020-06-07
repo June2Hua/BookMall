@@ -1,4 +1,9 @@
 <%@ page import="com.hua.domain.User" %>
+<%@ page import="com.hua.dao.IGoodsDao" %>
+<%@ page import="com.hua.dao.impl.GoodsDaoImpl" %>
+<%@ page import="com.hua.domain.Goods" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Random" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,16 +15,26 @@
   <%--引入bootstrap--%>
   <script src="//cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
   <script src="//cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <%--css--%>
+  <style>
+    .goodsDiv:hover{
+      border: 2px solid orangered;
+    }
+  </style>
 </head>
 
 <body>
+<%--全局变量--%>
+<%!
+  IGoodsDao goodsDao;
+  List<Goods> lastestGoods;
+  User user=null;
+%>
+
 <div id="top">
   <div style="float:left" class="m-margin-small">
     <p class="m-font-middle" style="color:white">欢迎来到JuneHua图书购物商城</p>
   </div>
-  <%!
-    User user=null;
-  %>
   <div style="float:right" class="m-margin-small">
     <a class="m-font-middle"  href="#">购物车</a>
   </div>
@@ -115,146 +130,79 @@
     <h3>最新推荐</h3>
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
+      <%
+        goodsDao=new GoodsDaoImpl();
+        lastestGoods = goodsDao.getLastestGoods();
+        for(int i=0;i<5;i++){
+            out.println("<div class=\"col-md-2 \">\n" +
+                    "        <div class='goodsDiv' style=\"background-color: white\">\n" +
+                    "         <a href='./showGoods.jsp?id="+lastestGoods.get(i).getId()+"'>\n"+
+                    "          <img src=\"./img/"+lastestGoods.get(i).getImage()+"\" style=\"width: 100%\" alt=\"\">\n" +
+                    "         </a>\n"+
+                    "          <p><span style=\"margin-right: 6px\">"+lastestGoods.get(i).getName()+"</span><span style=\"margin-left: 6px\">"+lastestGoods.get(i).getModify()+"</span></p>\n" +
+                    "          <p style=\"width:180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;\">"+lastestGoods.get(i).getRemark()+"</p>\n" +
+                    "          <p><span id=\"\" style=\"margin-right: 6px\">"+lastestGoods.get(i).getPrice()+"</span><span class=\"glyphicon glyphicon-shopping-cart\" style=\"margin-left: 6px\"  onclick=\"clickCar("+lastestGoods.get(i).getId()+")\" ></span></p>\n" +
+                    "        </div>\n" +
+                    "      </div>");
+        }
+      %>
       <div class="col-md-1"></div>
     </div>
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
+      <%
+        for(int i=5;i<10;i++){
+          out.println("<div class=\"col-md-2\">\n" +
+                  "        <div class='goodsDiv' style=\"background-color: white\">\n" +
+                  "         <a href='./showGoods.jsp?id="+lastestGoods.get(i).getId()+"'>\n"+
+                  "          <img src=\"./img/"+lastestGoods.get(i).getImage()+"\" style=\"width: 100%\" alt=\"\">\n" +
+                  "         </a>\n"+
+                  "          <p><span style=\"margin-right: 6px\">"+lastestGoods.get(i).getName()+"</span><span style=\"margin-left: 6px\">"+lastestGoods.get(i).getModify()+"</span></p>\n" +
+                  "          <p style=\"width:180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;\">"+lastestGoods.get(i).getRemark()+"</p>\n" +
+                  "          <p><span id=\"\" style=\"margin-right: 6px\">"+lastestGoods.get(i).getPrice()+"</span><span class=\"glyphicon glyphicon-shopping-cart\" style=\"margin-left: 6px\"  onclick=\"clickCar("+lastestGoods.get(i).getId()+")\"></span></p>\n" +
+                  "        </div>\n" +
+                  "      </div>");
+        }
+      %>
       <div class="col-md-1"></div>
     </div>
 
     <h3>猜你喜欢</h3>
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
+      <%
+        List<Goods> allGoods = goodsDao.getAll();
+        //使用随机数模拟推荐
+        Random random=new Random();
+//        System.out.println(allGoods.size());
+        for(int j=0;j<5;j++){
+          int i=random.nextInt(10);
+//          System.out.println(i);
+          out.println("<div class=\"col-md-2\">\n" +
+                  "        <div class='goodsDiv' style=\"background-color: white\">\n" +
+                  "         <a href='./showGoods.jsp?id="+allGoods.get(i).getId()+"'>\n"+
+                  "          <img src=\"./img/"+allGoods.get(i).getImage()+"\" style=\"width: 100%\" alt=\"\">\n" +
+                  "         </a>\n"+
+                  "          <p><span style=\"margin-right: 6px\">"+allGoods.get(i).getName()+"</span><span style=\"margin-left: 6px\">"+allGoods.get(i).getModify()+"</span></p>\n" +
+                  "          <p style=\"width:180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;\">"+allGoods.get(i).getRemark()+"</p>\n" +
+                  "          <p><span id=\"\" style=\"margin-right: 6px\">"+allGoods.get(i).getPrice()+"</span><span class=\"glyphicon glyphicon-shopping-cart\" style=\"margin-left: 6px\" onclick=\"clickCar("+allGoods.get(i).getId()+")\"></span></p>\n" +
+                  "        </div>\n" +
+                  "      </div>");
+        }
+      %>
       <div class="col-md-1"></div>
     </div>
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
+
+        <div class='goodsDiv' style="background-color: white">
+          <a href="./showGoods.jsp?id=1">
+            <img src="./img/book3.jpg" style="width: 100%" alt="">
+          </a>
           <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
           <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
+          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px" onclick="clickCar(1)"></span></p>
         </div>
       </div>
       <div class="col-md-2">
@@ -324,7 +272,35 @@
   var info=document.getElementById("info");
   var moreInfo=document.getElementById("moreInfo");
   var logout=document.getElementById("logout");
+  var user="<%=user==null?"":user%>";
 
+
+  //点击购物车图标，判断是否登录以及添加到购物车操作
+  function clickCar(index){
+    console.log(user);
+    //未登录
+    if(user==null||user==""){
+      alert("请先登录，再添加购物车操作");
+      return false;
+    }
+    alert("成功添加到了购物车");
+    $.ajax({
+      type:"POST",
+      url:"/company/shopCar",
+      data:{goodsId:index},
+      dataType:"json",
+      success:function(data){
+        alert("-------ajax--------");
+      }
+    })
+  }
+
+  //点击图书信息
+  function clickGoods(index){
+    console.log("clickGoods");
+  }
+
+  //点击注销
   logout.onclick=function (event) {
       alert("注销成功");
   }
