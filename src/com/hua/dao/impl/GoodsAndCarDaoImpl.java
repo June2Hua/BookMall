@@ -1,21 +1,15 @@
 package com.hua.dao.impl;
 
-import com.hua.dao.IGoodsAndCar;
-import com.hua.dao.IUserDao;
-import com.hua.domain.Goods;
+import com.hua.dao.IGoodsAndCarDao;
 import com.hua.domain.GoodsAndCar;
-import com.hua.domain.PersonalShopCar;
-import com.hua.domain.User;
 import com.hua.utils.ConnnectionUtil;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
 
-public class GoodsAndCarImpl implements IGoodsAndCar {
+public class GoodsAndCarDaoImpl implements IGoodsAndCarDao {
 
     /**
      * 根据商品id和购物车id，更新商品和购物车的关联关系表,主要更新数量

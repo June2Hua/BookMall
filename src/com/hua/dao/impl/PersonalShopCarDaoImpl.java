@@ -1,9 +1,8 @@
 package com.hua.dao.impl;
 
-import com.hua.dao.IPersonalShopCar;
+import com.hua.dao.IPersonalShopCarDao;
 import com.hua.dao.IUserDao;
 import com.hua.domain.PersonalShopCar;
-import com.hua.domain.User;
 import com.hua.utils.ConnnectionUtil;
 
 import java.sql.Connection;
@@ -12,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date;
 
-public class PersonalShopCarImpl implements IPersonalShopCar {
+public class PersonalShopCarDaoImpl implements IPersonalShopCarDao {
 
     //查询用户类
     IUserDao userDao=new UserDaoImpl();

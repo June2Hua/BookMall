@@ -12,9 +12,6 @@
         <p class="m-font-middle" style="color:white">欢迎来到JuneHua图书购物商城</p>
     </div>
     <div style="float:right" class="m-margin-small">
-        <a class="m-font-middle"  href="#">购物车</a>
-    </div>
-    <div style="float:right" class="m-margin-small">
         <a class="m-font-middle"  href="./register.jsp" target="_blank">注册</a>
     </div>
     <div style="float:right" class="m-margin-small">

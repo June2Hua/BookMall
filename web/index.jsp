@@ -35,11 +35,11 @@
   <div style="float:left" class="m-margin-small">
     <p class="m-font-middle" style="color:white">欢迎来到JuneHua图书购物商城</p>
   </div>
-  <div style="float:right" class="m-margin-small">
-    <a class="m-font-middle"  href="#">购物车</a>
-  </div>
   <%
         if(session.getAttribute("user")!=null){
+            out.println("<div style=\"float:right\" class=\"m-margin-small\">\n" +
+                    "    <a onclick=\"goToShowShopCar()\" class=\"m-font-middle\" href=\"/company/goToShowShopCar\">购物车</a>\n" +
+                    "  </div>");
             out.println("<div style=\"float:right\" class=\"m-margin-small\">\n" +
                     "    <a class=\"m-font-middle\"  href=\"/company/alterInfo\" >修改信息</a>\n" +
                     "  </div>\n" +
@@ -300,6 +300,17 @@
     console.log("clickGoods");
   }
 
+  //点击前往购物车
+  function goToShowShopCar(){
+    //未登录
+    if(user==null||user==""){
+      alert("请先登录，再前往购物车列表");
+      return false;
+    }
+    //登录成功
+    return true;
+  }
+
   //点击注销
   logout.onclick=function (event) {
       alert("注销成功");
@@ -312,6 +323,7 @@
   info.onmouseleave=function (event) {
       moreInfo.style.display="none";
   }
+
 </script>
 </body>
 </html>

@@ -4,6 +4,13 @@
 <%@ page import="com.hua.domain.Goods" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Random" %>
+<%@ page import="com.hua.dao.IGoodsAndCarDao" %>
+<%@ page import="com.hua.dao.impl.GoodsAndCarDaoImpl" %>
+<%@ page import="com.hua.dao.IPersonalShopCarDao" %>
+<%@ page import="com.hua.dao.impl.PersonalShopCarDaoImpl" %>
+<%@ page import="com.hua.domain.PersonalShopCar" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Set" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,6 +22,20 @@
   <%--引入bootstrap--%>
   <script src="//cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
   <script src="//cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    button {
+      padding:8px;
+      background-color: #ff6e60;
+      border-color: #ff6e60;
+      color: #fff;
+      border-radius: 10px;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid transparent;
+      font-weight: 900;
+      font-size:125%
+    }
+  </style>
 </head>
 
 <body>
@@ -23,28 +44,16 @@
   IGoodsDao goodsDao;
   List<Goods> lastestGoods;
   User user=null;
-  int id;//参数id
-  Goods goods=null;//查询到的商品
-%>
-<%
-  //请求参数
-  String parameter = request.getParameter("id");
-  id = Integer.valueOf(parameter);
-  //查询
-  IGoodsDao goodsDao=new GoodsDaoImpl();
-  goods = goodsDao.getGoodsById(id);
+  Map<Goods, Integer> goodsMap;
 %>
 
 <div id="top">
   <div style="float:left" class="m-margin-small">
-    <p class="m-font-middle" style="color:white">欢迎来到JuneHua图书购物商城</p>
+    <p class="m-font-middle" style="color:white">购物车</p>
   </div>
   <%
-    user=(User) session.getAttribute("user");
-    if(user!=null){
-            out.println("<div style=\"float:right\" class=\"m-margin-small\">\n" +
-                  "    <a onclick=\"goToShowShopCar()\" class=\"m-font-middle\" href=\"/company/goToShowShopCar\">购物车</a>\n" +
-                  "  </div>");
+        user=(User) session.getAttribute("user");
+        if(user!=null){
             out.println("<div style=\"float:right\" class=\"m-margin-small\">\n" +
                     "    <a class=\"m-font-middle\"  href=\"/company/alterInfo\" >修改信息</a>\n" +
                     "  </div>\n" +
@@ -64,18 +73,30 @@
         }
   %>
 </div>
-
+<%--根据用户查询购物车--%>
 <%
-  if(goods==null) {
-    out.println("<div style='text-align:center'>\n" +
-            "  <h3 style=\"color: red\">错误，查询不到该商品</h3>\n" +
-            "</div>");
-    return ;
-  }
+  String userId=user.getId();
+  IPersonalShopCarDao personalShopCarDao=new PersonalShopCarDaoImpl();
+  PersonalShopCar personalShopCar = personalShopCarDao.findPersonalShopCarByUserId(userId);
+  IGoodsDao goodsDao=new GoodsDaoImpl();
+  goodsMap = goodsDao.getGoodsByShopCarId(personalShopCar.getId());
 %>
-<br><br><br>
-<div class="container" style="margin: 60px">
-  <div class="row">
+
+<!-- 使用div容器嵌套 -->
+<div id="container" style="margin: 100px">
+  <%
+    //购物车是否为空
+    if(goodsMap==null||goodsMap.size()==0) {
+        out.println("<h2>购物车为空</h2>");
+    }
+    //查询购物车内容
+    else{
+      Set<Map.Entry<Goods, Integer>> entries = goodsMap.entrySet();
+      for(Map.Entry<Goods, Integer> entry:entries){
+          Goods goods=entry.getKey();
+          int count=entry.getValue();
+  %>
+  <div class="row" style="border: 1px solid red;margin: 20px;padding: 10px;">
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <img src="./img/<%=goods.getImage()%>" style="height: 350px;width: 350px" alt="找不到图片">
@@ -88,12 +109,20 @@
       <p><b>店主：</b><%=goods.getUser().getName()%></p>
       <p><span><b>联系电话：</b><%=goods.getUser().getPhone()%></span></p>
       <p><b>价格:</b><span style="color: orangered"><%=goods.getPrice()%></span></p>
-      <p><b>添加到购物车:</b><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px" onclick="clickCar(1)"></span></p>
-
+      <p><b>购物车数量</b><span style="color: orangered"><%=count%></span></p>
     </div>
   </div>
+  <%
+      }
+    }
+  %>
+  <div style="text-align: center">
+    <button>立即下单</button>
+  </div>
 </div>
-<br><br><br><br>
+<br>
+
+
 <!-- 底部内容 -->
 <div id="footer" class="m-height-middle  m-width-full">
   <br>
@@ -124,17 +153,6 @@
   var logout=document.getElementById("logout");
   var user="<%=user==null?"":user%>";
 
-  //点击购物车图标，判断是否登录以及添加到购物车操作
-  function clickCar(index){
-    console.log(user);
-    //未登录
-    if(user==null||user==""){
-      alert("请先登录，再添加购物车操作");
-      return false;
-    }
-    alert("成功添加到了购物车");
-  }
-
   //点击注销
   logout.onclick=function (event) {
       alert("注销成功");
@@ -147,6 +165,7 @@
   info.onmouseleave=function (event) {
       moreInfo.style.display="none";
   }
+
 </script>
 </body>
 </html>

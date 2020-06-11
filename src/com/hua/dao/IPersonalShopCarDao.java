@@ -4,7 +4,7 @@ import com.hua.domain.PersonalShopCar;
 
 import java.util.Date;
 
-public interface IPersonalShopCar {
+public interface IPersonalShopCarDao {
 
     PersonalShopCar findPersonalShopCarByUserId(String id);
 

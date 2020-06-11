@@ -1,18 +1,18 @@
 package com.hua.service.impl;
 
-import com.hua.dao.IGoodsAndCar;
-import com.hua.dao.IPersonalShopCar;
-import com.hua.dao.impl.GoodsAndCarImpl;
-import com.hua.dao.impl.PersonalShopCarImpl;
+import com.hua.dao.IGoodsAndCarDao;
+import com.hua.dao.IPersonalShopCarDao;
+import com.hua.dao.impl.GoodsAndCarDaoImpl;
+import com.hua.dao.impl.PersonalShopCarDaoImpl;
 import com.hua.domain.GoodsAndCar;
 import com.hua.domain.PersonalShopCar;
 import com.hua.service.IShopCarService;
 
 public class ShopCarServiceImpl implements IShopCarService {
 
-    IPersonalShopCar personalShopCar=new PersonalShopCarImpl();
+    IPersonalShopCarDao personalShopCar=new PersonalShopCarDaoImpl();
 
-    IGoodsAndCar goodsAndCar=new GoodsAndCarImpl();
+    IGoodsAndCarDao goodsAndCar=new GoodsAndCarDaoImpl();
 
     @Override
     public boolean addGoodsToShopCar(String userId, Integer goodsId) {
