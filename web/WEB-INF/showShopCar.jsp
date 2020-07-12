@@ -23,7 +23,7 @@
   <script src="//cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
   <script src="//cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style type="text/css">
-    button {
+    .buttonStyle {
       padding:8px;
       background-color: #ff6e60;
       border-color: #ff6e60;
@@ -45,6 +45,7 @@
   List<Goods> lastestGoods;
   User user=null;
   Map<Goods, Integer> goodsMap;
+  double totalPrice=0;//总价格
 %>
 
 <div id="top">
@@ -93,8 +94,9 @@
     else{
       Set<Map.Entry<Goods, Integer>> entries = goodsMap.entrySet();
       for(Map.Entry<Goods, Integer> entry:entries){
-          Goods goods=entry.getKey();
-          int count=entry.getValue();
+          Goods goods=entry.getKey();//商品
+          int count=entry.getValue();//数量
+          totalPrice+=goods.getPrice()*count;//计算金额
   %>
   <div class="row" style="border: 1px solid red;margin: 20px;padding: 10px;">
     <div class="col-md-1"></div>
@@ -114,11 +116,19 @@
   </div>
   <%
       }
+      %>
+  <div style="text-align: center">
+    <p style="font-size: 22px">总金额：<span style="color: #ff6e60;"><%=totalPrice%></span></p>
+    <form action="/company/placeOrder" method="post">
+      <input type="carId" name="carId" hidden="hidden" value="<%=personalShopCar.getId()%>">
+      <%--<%=personalShopCar.getId()%>--%>
+      <%--<%=personalShopCar%>--%>
+      <input type="submit" value="立即下单" class="buttonStyle">
+    </form>
+  </div>
+  <%
     }
   %>
-  <div style="text-align: center">
-    <button>立即下单</button>
-  </div>
 </div>
 <br>
 

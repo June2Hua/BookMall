@@ -194,49 +194,22 @@
     </div>
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-2">
-
-        <div class='goodsDiv' style="background-color: white">
-          <a href="./showGoods.jsp?id=1">
-            <img src="./img/book3.jpg" style="width: 100%" alt="">
-          </a>
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px" onclick="clickCar(1)"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div style="background-color: white">
-          <img src="./img/book3.jpg" style="width: 100%" alt="">
-          <p><span style="margin-right: 6px">name</span><span style="margin-left: 6px">modify</span></p>
-          <p>remark</p>
-          <p><span style="margin-right: 6px">price</span><span class="glyphicon glyphicon-shopping-cart" style="margin-left: 6px"></span></p>
-        </div>
-      </div>
+      <%
+        for(int j=0;j<5;j++){
+          int i=random.nextInt(10);
+//          System.out.println(i);
+          out.println("<div class=\"col-md-2\">\n" +
+                  "        <div class='goodsDiv' style=\"background-color: white\">\n" +
+                  "         <a href='./showGoods.jsp?id="+allGoods.get(i).getId()+"'>\n"+
+                  "          <img src=\"./img/"+allGoods.get(i).getImage()+"\" style=\"width: 100%\" alt=\"\">\n" +
+                  "         </a>\n"+
+                  "          <p><span style=\"margin-right: 6px\">"+allGoods.get(i).getName()+"</span><span style=\"margin-left: 6px\">"+allGoods.get(i).getModify()+"</span></p>\n" +
+                  "          <p style=\"width:180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;\">"+allGoods.get(i).getRemark()+"</p>\n" +
+                  "          <p><span id=\"\" style=\"margin-right: 6px\">"+allGoods.get(i).getPrice()+"</span><span class=\"glyphicon glyphicon-shopping-cart\" style=\"margin-left: 6px\" onclick=\"clickCar("+allGoods.get(i).getId()+")\"></span></p>\n" +
+                  "        </div>\n" +
+                  "      </div>");
+        }
+      %>
       <div class="col-md-1"></div>
     </div>
   </div>
